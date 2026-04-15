@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blind Sales Calculator</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; background: #f4f4f9; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; font-weight: bold; color: #333; font-size: 1.2rem; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Sales Calc</h2>
+    <label>Blind Cost ($)</label>
+    <input type="number" id="cost" placeholder="0.00">
+    <button onclick="calculate()">Calculate Sales</button>
+    <div id="result">Total Sales: $0.00</div>
+</div>
+
+<script>
+    function calculate() {
+        const cost = parseFloat(document.getElementById('cost').value);
+        if (isNaN(cost)) {
+            document.getElementById('result').innerText = "Please enter a number";
+            return;
+        }
+        
+        // The Formula: ((Cost * 2.2 * 1.1) + 65) * 1.04
+        let step1 = cost * 2.2 * 1.1;
+        let step2 = step1 + 65;
+        let total = step2 * 1.04;
+
+        document.getElementById('result').innerText = "Total Sales: $" + total.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
